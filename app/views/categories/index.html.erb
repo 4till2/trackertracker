@@ -1,0 +1,16 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex w-full justify-between items-center p-3">
+    <%= render 'layouts/navbar' %>
+    <%= link_to 'New Category', new_category_path, class: "rounded-lg py-3 px-2 bg-gray-700 text-gray-200 block font-medium rotate-3 text-xs md:text-lg" %>
+  </div>
+
+  <div id="categories" class="min-w-full my-5">
+    <% @categories.each do |category| %>
+      <%= render partial: 'categories/category_link', locals: { category: category } %>
+    <% end %>
+  </div>
+</div>

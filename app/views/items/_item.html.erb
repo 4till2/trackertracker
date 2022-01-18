@@ -1,0 +1,24 @@
+<div id="<%= dom_id item %>">
+  <div class="flex items-center justify-between m-2 shadow border border-dotted border-gray-700/50 rounded-lg ">
+    <div class="p-3">
+      <p class="font-bold tracking-wide font-bold text-lg md:text-3xl">
+        <%= item.name %>
+      </p>
+      <div class="">
+        <% item.categories.each do |category| %>
+          <span class="mr-0.5 mt-1 inline-flex whitespace-nowrap rounded-md bg-gray-200/80 text-gray-500 items-center py-1 self-center px-1 text-xs md:font-medium">
+            <% if local_assigns[:full] %>
+                <%= link_to category.name, category_path(category) %>
+              <% else %>
+                <%= category.name %>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+      <div class="text-gray-600 mt-1 text-sm">
+        <%= pluralize(item.entries.count, 'entry') %>
+      </div>
+    </div>
+    <div class="font-bold md:text-2xl p-3 mr-3 rounded-md bg-gray-500/80 text-gray-50 items-center"><%= item.total %></div>
+  </div>
+</div>

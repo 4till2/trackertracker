@@ -1,0 +1,23 @@
+<div id="<%= dom_id category %>">
+  <div class="flex w-full justify-between bg-gray-100 p-4 rounded">
+    <%= link_to categories_path do %>
+      <div class="font-medium text-lg flex">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Categories
+      </div>
+      <% end %>
+    <%= link_to "Edit", edit_category_path(category), class: 'font-medium text-lg' %>
+  </div>
+  <div class="p-8">
+  <p class="font-bold tracking-wide text-3xl">
+    <%= category.name %>
+  </p>
+  <div class="font-bold">
+    <%= pluralize(category.items.count, 'item') %>,
+    <%= pluralize(category.entries.count, 'entries') %>,
+    <%= category.entries.count + category.items.count %> Total
+  </div>
+  </div>
+</div>

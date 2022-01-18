@@ -1,0 +1,26 @@
+<%= form_with(model: category, class: "contents") do |form| %>
+  <div class="flex w-full justify-between flex-center p-4 rounded">
+    <%= link_to "Cancel", category.id ? category_path(category.id) : categories_path, class: "rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
+    <h1 class="font-bold text-xl">
+      <% if action_name == "new" || action_name == "create" %>
+        New Category
+      <% elsif action_name == "edit" %>
+        Edit Category
+      <% end %>
+    </h1>
+    <div class="inline">
+      <%= form.submit "Save", class: "cursor-pointer rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium rotate-3" %>
+    </div>
+  </div>
+  <div class="p-4">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% if category.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+        <%= category.errors.full_messages_for(:name).first%>
+      </div>
+    <% end %>
+  </div>
+
+
+<% end %>

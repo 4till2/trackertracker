@@ -1,0 +1,71 @@
+<%= form_with(model: item, class: "contents", local: true, id: 'item-form') do |form| %>
+
+  <div class="flex w-full justify-between flex-center  p-4 rounded">
+    <%= link_to "Cancel", item.id ? item_path(item.id) : items_path, class: "rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
+    <h1 class="font-bold text-xl">
+      <% if action_name == "new" || action_name == "create" %>
+        New Item
+      <% elsif action_name == "edit" %>
+        Edit Item
+      <% end %>
+    </h1>
+    <div class="inline">
+<!--   NO BUTTONS ALLOWED ON PAGE: This is not a button since enter is not a cancellable event for smart input, and a button here is double clicked when using js-->
+      <div class="cursor-pointer rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium rotate-3" onclick="document.getElementById('item-form').requestSubmit()">Save</div>
+    </div>
+  </div>
+
+  <div class="md:w-3/4 mx-auto p-4 md:p-1">
+    <div class="my-5">
+      <%= form.text_field :name, placeholder: "Add Name", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 mt-2 w-full" %>
+      <% if item.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+          <%= item.errors.full_messages_for(:name).first %>
+        </div>
+      <% end %>
+    </div>
+
+    <label for="item[category_names]" class="sr-only">Categories</label>
+    <div class="block bg-gray-100 text-lg text-gray-800 font-bold shadow rounded-md border border-gray-200" data-controller="smart-select" data-smart-select-name-value="item[category_names][]">
+      <div class="w-full mx-auto py-3 px-3 items-center">
+        <!--      <h3 class="text-sm font-semibold uppercase tracking-wide text-gray-500">Categories</h3>-->
+        <!--      <div aria-hidden="true" class="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"></div>-->
+
+          <input list="categorySuggestions" cancelable="true" data-smart-select-target="newOption" data-action="change->smart-select#addSelection" id="newCategory" placeholder="Add Category" class="inline-flex mr-2 items-center text-md md:text-lg font-bold  text-gray-900 border-none w-full lg:w-43 bg-gray-100 focus:outline-none focus:ring-0 focus:border-none"/>
+          <datalist id="categorySuggestions">
+            <% @categories && @categories.each do |category| %>
+              <option value="<%= category.name %>"></option>
+            <% end %>
+          </datalist>
+          <div data-smart-select-target="selectedOptions" class="flex w-full flex-wrap gap-2 mt-3 break-words overflow-hidden overflow-wrap">
+            <% item.categories && item.categories.each do |category| %>
+              <div class="" id="smart-select-selection-<%= category.name %>">
+                <div class="-m-1 flex items-center">
+                <span class="m-1 inline-flex whitespace-nowrap rounded-md bg-gray-500/80 text-gray-50 items-center py-1.5 pl-3 pr-2 text-sm font-medium">
+                  <span><%= category.name %></span>
+                  <input type="hidden" name="item[category_names][]" value="<%= category.name %>"/>
+                  <div type="button" data-action="click->smart-select#removeSelection" data-smart-select-selection-param="<%= category.name %>" class="flex-shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-200/50 hover:bg-gray-200 hover:text-gray-500">
+                    <span class="sr-only">Remove selection</span>
+                    <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+                      <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7"/>
+                    </svg>
+                  </div>
+                </span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+<!--          <div class="hidden md:block cursor-pointer text-gray-400 inline-block whitespace-nowrap text-sm float-right" data-action="click->smart-select#removeAllSelections">Clear-->
+<!--            All-->
+<!--          </div>-->
+        </div>
+      </div>
+
+    </div>
+<% end %>
+<% if action_name == "edit" %>
+  <div class="w-full text-center mt-4">
+    <%= link_to 'Destroy this item', item_path(@item), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
+  </div>
+<% end %>
+</div>

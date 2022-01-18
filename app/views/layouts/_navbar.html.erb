@@ -1,0 +1,24 @@
+<div class="">
+  <div class="w-full flex items-end gap-3 text-xs md:gap-4 md:text-lg">
+    <% if current_page?(:controller => 'dashboards') %>
+      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Dashboards</h1>
+    <% else %>
+      <%= link_to 'Dashboards', dashboards_path %>
+    <% end %>
+    <% if current_page?(:controller => 'entries') %>
+      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Entries</h1>
+    <% else %>
+      <%= link_to 'Entries', entries_path %>
+    <% end %>
+    <% if current_page?(:controller => 'items') %>
+      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Items</h1>
+    <% else %>
+      <%= link_to 'Items', items_path %>
+    <% end %>
+    <% if current_page?(:controller => 'categories') %>
+      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Categories</h1>
+    <% else %>
+      <%= link_to 'Categories', categories_path %>
+    <% end %>
+  </div>
+</div>
