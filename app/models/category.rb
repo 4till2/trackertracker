@@ -11,4 +11,13 @@ class Category < ApplicationRecord
       Category.find_or_create_by!(user_id: user_id, name: cat).id
     end
   end
+
+  def total
+    entries.sum(:amount)
+  end
+
+  def name=(value)
+    write_attribute(:name, value.upcase)
+  end
+
 end

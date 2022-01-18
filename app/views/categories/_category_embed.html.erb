@@ -1,0 +1,14 @@
+<div id="<%= dom_id category %>" class="w-full p-3">
+  <div class="categorys-center md:grid grid-cols-3 p-2 shadow border-gray-700/50 rounded-lg ">
+    <div class="col-span-2">
+      <p class="font-bold text-sm truncate">
+        <%= category.name %>
+      </p>
+      <div class="text-gray-600 flex-end text-xs">
+        <%= pluralize(category.items.count, 'item') %>
+        <%= pluralize(category.entries.count, 'entry') %>
+      </div>
+    </div>
+    <div class="font-bold text-xs p-1 px-2 rounded-md bg-gray-500/80 text-gray-50 items-center truncate"><%= category.total %></div>
+  </div>
+</div>

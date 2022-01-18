@@ -1,22 +1,21 @@
 <div id="<%= dom_id entry %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Item:</strong>
-    <%= entry.item_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date:</strong>
-    <%= entry.date %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Amount:</strong>
-    <%= entry.amount %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this entry", entry, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this entry', edit_entry_path(entry), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <div class="flex items-center justify-between m-2 shadow border border-dotted border-gray-700/50 rounded-lg ">
+    <div class="p-3">
+      <p class="font-bold tracking-wide font-bold text-lg md:text-3xl">
+        <%= entry.item.name %>
+      </p>
+      <div class="">
+        <% entry.item.categories.each do |category| %>
+          <span class="mr-0.5 mt-1 inline-flex whitespace-nowrap rounded-md bg-gray-200/80 text-gray-500 items-center py-1 self-center px-1 text-xs md:font-medium">
+                <%= category.name %>
+          </span>
+        <% end %>
+      </div>
+      <div class="text-gray-600 mt-1 text-sm">
+        <%= time_ago_in_words(entry.date || entry.created_at) %> ago
+      </div>
+    </div>
+    <div class="font-bold md:text-2xl p-3 mr-3 rounded-md bg-gray-500/80 text-gray-50 items-center"><%= entry.amount %></div>
+  </div>
 </div>
+

@@ -3,18 +3,54 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-    <div class="flex w-full justify-between bg-gray-100 p-4 rounded mb-4">
+    <div class="flex w-full justify-between p-4 pt-0 rounded">
       <%= link_to items_path do %>
         <div class="font-medium text-lg flex">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
           </svg>
-          Items
         </div>
       <% end %>
-      <%= link_to "Edit", edit_item_path(@item), class: 'font-medium text-lg' %>
+      <h1 class="font-semibold text-xl">Item</h1>
+      <%= link_to edit_item_path(@item) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        </svg>
+      <% end %>
     </div>
-    <%= render @item, full: true%>
-<!--    render item details-->
+    <div id="<%= dom_id @item %>">
+      <div class="w-full text-center grid gap-1">
+        <div class="font-bold mx-auto text-xl md:text-3xl p-4 w-auto rounded-md bg-gray-500/80 text-gray-50 text-center"><%= @item.total %></div>
+        <p class="font-bold tracking-wide font-bold text-lg md:text-3xl mt-1">
+          <%= @item.name %>
+        </p>
+        <div class="text-gray-600 text-sm">
+          <%= pluralize(@item.entries.count, 'entry') %>
+        </div>
+      </div>
+
+      <div class="p-2 mt-4 my-2">
+        <h1 class="w-full font-extrabold px-5 bg-gray-500/80 text-gray-100 rounded">Categories</h1>
+        <div class="w-full grid grid-cols-3">
+          <% @item.categories.each do |category| %>
+            <%= link_to category do %>
+              <%= render 'categories/category_embed', category: category %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="p-2 mt-4 my-2">
+        <h1 class="w-full font-extrabold px-5 bg-gray-500/80 text-gray-100 rounded">Entries</h1>
+        <div class="w-full grid grid-cols-3">
+          <% @item.entries.each do |entry| %>
+            <%= link_to entry do %>
+              <%= render 'entries/entry_embed', entry: entry %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

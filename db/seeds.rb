@@ -4,4 +4,11 @@ item = Item.create! user: user, name: SecureRandom.alphanumeric(3), categories: 
 dash = Dashboard.create! user: user, name: SecureRandom.alphanumeric(5)
 display = Display.create!(user: user, name: SecureRandom.alphanumeric(4), dashboard: dash,
                           sources: [Source.new(sourceable: item), Source.new(sourceable: category)])
-entry = Entry.create! user: user, item: item
+5.times do
+  entry = Entry.create! user: user, item: item
+end
+
+10.times do
+  item = Item.create! user: user, name: SecureRandom.alphanumeric(3), categories: [category]
+  entry = Entry.create! user: user, item: item, amount: SecureRandom.random_number(100)
+end

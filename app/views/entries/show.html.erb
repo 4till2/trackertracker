@@ -1,15 +1,40 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+<div class="mx-auto w-full flex">
+  <div class="mx-auto w-full">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-
-    <%= render @entry %>
-
-    <%= link_to 'Edit this entry', edit_entry_path(@entry), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this entry', entry_path(@entry), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="flex w-full justify-between p-4 pt-0 rounded">
+      <%= link_to entries_path do %>
+        <div class="font-medium text-lg flex">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </div>
+      <% end %>
+      <h1 class="font-semibold text-xl">Entry</h1>
+      <%= link_to edit_entry_path(@entry) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        </svg>
+        <% end %>
     </div>
-    <%= link_to 'Back to entries', entries_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div id="<%= dom_id @entry %>">
+      <div class="w-full text-center grid gap-1">
+        <div class="font-bold mx-auto text-xl md:text-3xl p-4 w-auto rounded-md bg-gray-500/80 text-gray-50 text-center"><%= @entry.amount %></div>
+        <p class="font-bold tracking-wide font-bold text-lg md:text-3xl mt-1">
+          <%= @entry.item.name %>
+        </p>
+        <div class="text-gray-600 text-sm">
+          <%= time_ago_in_words(@entry.date || @entry.created_at) %> ago
+        </div>
+        <div class="mx-auto flex flex-wrap px-4 text-center justify-center items-center gap-2">
+          <% @entry.item.categories.each do |category| %>
+            <span class="mr-0.5 mt-1 inline-flex whitespace-nowrap rounded-md bg-gray-200/80 text-gray-500 items-center py-1 self-center px-1 text-xs md:font-medium">
+              <%= link_to category.name, category_path(category) %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

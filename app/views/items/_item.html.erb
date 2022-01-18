@@ -21,4 +21,9 @@
     </div>
     <div class="font-bold md:text-2xl p-3 mr-3 rounded-md bg-gray-500/80 text-gray-50 items-center"><%= item.total %></div>
   </div>
+  <% if local_assigns[:full] %>
+    <% item.entries.each do |entry| %>
+      <%= render entry %>
+    <% end %>
+  <% end %>
 </div>

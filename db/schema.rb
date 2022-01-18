@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_191410) do
     t.integer "user_id", null: false
     t.integer "item_id", null: false
     t.datetime "date", precision: 6
-    t.integer "amount"
+    t.integer "amount", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_entries_on_item_id"

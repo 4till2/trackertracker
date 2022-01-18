@@ -1,7 +1,7 @@
 <%= form_with(model: category, class: "contents") do |form| %>
   <div class="flex w-full justify-between flex-center p-4 rounded">
-    <%= link_to "Cancel", category.id ? category_path(category.id) : categories_path, class: "rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
-    <h1 class="font-bold text-xl">
+    <%= link_to "Cancel", category.id ? category_path(category.id) : categories_path, class: "rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
+    <h1 class="font-semibold text-xl">
       <% if action_name == "new" || action_name == "create" %>
         New Category
       <% elsif action_name == "edit" %>
@@ -9,18 +9,22 @@
       <% end %>
     </h1>
     <div class="inline">
-      <%= form.submit "Save", class: "cursor-pointer rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium rotate-3" %>
+      <%= form.submit "Save", class: "cursor-pointer rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium rotate-3" %>
     </div>
   </div>
-  <div class="p-4">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    <% if category.errors.any? %>
-      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
-        <%= category.errors.full_messages_for(:name).first%>
-      </div>
-    <% end %>
+  <div class="md:w-3/4 mx-auto p-4 md:p-1">
+    <div class="my-5">
+      <%= form.text_field :name, placeholder: "Add Name", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 mt-2 w-full" %>
+      <% if category.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+          <%= category.errors.full_messages_for(:name).first %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-
+<% end %>
+<% if action_name == "edit" %>
+  <div class="w-full text-center mt-2">
+    <%= button_to 'Destroy this category', category_path(@category), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
+  </div>
 <% end %>

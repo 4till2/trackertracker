@@ -1,0 +1,13 @@
+<div id="<%= dom_id entry %>" class="w-full p-3">
+  <div class="items-center md:grid grid-cols-3 p-2 shadow border-gray-700/50 rounded-lg ">
+    <div class="col-span-2">
+      <p class="font-bold text-sm truncate">
+        <%= entry.item.name %>
+      </p>
+      <div class="text-gray-600 flex-end text-xs">
+        <%= time_ago_in_words(entry.date || entry.created_at) %>
+      </div>
+    </div>
+    <div class="font-bold text-xs p-1 px-2 rounded-md bg-gray-500/80 text-gray-50 items-center truncate"><%= entry.amount %></div>
+  </div>
+</div>

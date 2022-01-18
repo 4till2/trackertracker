@@ -1,14 +1,18 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex w-full justify-between items-center p-3">
-    <%= render 'layouts/navbar' %>
-    <%= link_to 'New Entry', new_entry_path, class: "rounded-lg py-3 px-2 bg-gray-700 text-gray-200 block font-medium rotate-3 text-xs md:text-lg" %>
-  </div>
-
-  <div id="entries" class="min-w-full">
-    <%= render @entries %>
+<div class="mx-auto w-full flex">
+  <div class="mx-auto w-full">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <div class="flex w-full justify-between items-center p-3">
+      <%= render 'layouts/navbar', title: 'Entries' %>
+      <%= link_to 'New Entry', new_entry_path, class: "rounded-lg py-3 px-2 bg-gray-700 text-gray-200 block font-medium rotate-3 text-xs md:text-md" %>
+    </div>
+    <div id="items" class="w-full my-3">
+      <% @entries.each do |entry| %>
+        <%= link_to entry do %>
+          <%= render entry %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

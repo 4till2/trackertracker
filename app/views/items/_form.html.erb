@@ -1,8 +1,8 @@
 <%= form_with(model: item, class: "contents", local: true, id: 'item-form') do |form| %>
 
   <div class="flex w-full justify-between flex-center  p-4 rounded">
-    <%= link_to "Cancel", item.id ? item_path(item.id) : items_path, class: "rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
-    <h1 class="font-bold text-xl">
+    <%= link_to "Cancel", item.id ? item_path(item.id) : items_path, class: "rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
+    <h1 class="font-semibold text-xl">
       <% if action_name == "new" || action_name == "create" %>
         New Item
       <% elsif action_name == "edit" %>
@@ -11,7 +11,7 @@
     </h1>
     <div class="inline">
 <!--   NO BUTTONS ALLOWED ON PAGE: This is not a button since enter is not a cancellable event for smart input, and a button here is double clicked when using js-->
-      <div class="cursor-pointer rounded-lg py-3 px-5 bg-gray-700 text-gray-200 block font-medium rotate-3" onclick="document.getElementById('item-form').requestSubmit()">Save</div>
+      <div class="cursor-pointer rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium rotate-3" onclick="document.getElementById('item-form').requestSubmit()">Save</div>
     </div>
   </div>
 
@@ -65,7 +65,6 @@
 <% end %>
 <% if action_name == "edit" %>
   <div class="w-full text-center mt-4">
-    <%= link_to 'Destroy this item', item_path(@item), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
+    <%= button_to 'Destroy this item', item_path(@item), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
   </div>
 <% end %>
-</div>

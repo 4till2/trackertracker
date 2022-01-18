@@ -1,32 +1,56 @@
 <%= form_with(model: entry, class: "contents") do |form| %>
-  <% if entry.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
-
-      <ul>
-        <% entry.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+  <div class="p-4">
+    <div class="flex w-full justify-between flex-center rounded">
+      <%= link_to "Cancel", entry.id ? entry_path(entry.id) : entries_path, class: "rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium -rotate-2" %>
+      <h1 class="font-semibold text-xl">
+        <% if action_name == "new" || action_name == "create" %>
+          New Entry
+        <% elsif action_name == "edit" %>
+          Edit Entry
         <% end %>
-      </ul>
+      </h1>
+      <div class="inline">
+        <%= form.submit 'Save', class: "cursor-pointer rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium rotate-3" %>
+      </div>
     </div>
-  <% end %>
 
-   <div class="my-5">
-    <%= form.label :item_id %>
-    <%= form.select :item_id, @items.map { |item| [item.name, item.id] }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="my-5 grid p-2">
+      <h2 class="text-gray-400 font-semibold">Item</h2>
+      <select name="entry[item_id]" id="entry_item_id" placeholder="Add Item" class="block bg-gray-100 md:text-lg text-gray-700 font-bold shadow rounded-md border-none focus:ring-0 px-3 py-4 w-full">
+        <% @items.map do |item| %>
+          <option value=<%= item.id %>><%= item.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <% if entry.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+        <%= entry.errors.full_messages_for(:item_id).first %>
+      </div>
+    <% end %>
+
+    <div class="my-5 grid p-2">
+      <h2 class="text-gray-400 font-semibold">Date</h2>
+      <%= form.datetime_field :date, placeholder: "mm/dd/yyyy, --:-- --", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
+      <% if entry.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+          <%= entry.errors.full_messages_for(:date).first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="my-5 grid p-2">
+      <h2 class="text-gray-400 font-semibold">Amount</h2>
+      <%= form.number_field :amount, placeholder: "Add amount", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
+      <% if entry.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+          <%= entry.errors.full_messages_for(:amount).first %>
+        </div>
+      <% end %>
+    </div>
+<% end %>
+<% if action_name == "edit" %>
+  <div class="w-full text-center mt-4">
+    <%= button_to 'Destroy this entry', entry_path(@entry), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
   </div>
-
-  <div class="my-5">
-    <%= form.label :date %>
-    <%= form.datetime_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :amount %>
-    <%= form.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

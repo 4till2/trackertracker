@@ -1,24 +1,34 @@
 <div class="">
-  <div class="w-full flex items-end gap-3 text-xs md:gap-4 md:text-lg">
+  <h1 class="font-extrabold text-4xl text-gray-800"><%= title %></h1>
+  <div class="w-full flex items-end text-xs md:text-lg text-gray-600 hover:text-gray-800">
+    <div class="pr-3">
     <% if current_page?(:controller => 'dashboards') %>
-      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Dashboards</h1>
+      <div class="text-gray-400 font-semibold p-0">Dashboards</div>
     <% else %>
-      <%= link_to 'Dashboards', dashboards_path %>
+      <%= link_to 'Dashboards', dashboards_path, class: 'hover:border-b hover:border-b-gray-400' %>
     <% end %>
+    </div>
+    <div class="pr-3">
+
     <% if current_page?(:controller => 'entries') %>
-      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Entries</h1>
+      <div class="text-gray-400 font-semibold border-b">Entries</div>
     <% else %>
-      <%= link_to 'Entries', entries_path %>
+      <%= link_to 'Entries', entries_path, class: 'hover:border-b hover:border-b-gray-400' %>
     <% end %>
+    </div>
+    <div class="pr-3">
     <% if current_page?(:controller => 'items') %>
-      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Items</h1>
+      <div class="text-gray-400 font-semibold border-b">Items</div>
     <% else %>
-      <%= link_to 'Items', items_path %>
+      <%= link_to 'Items', items_path, class: 'hover:border-b hover:border-b-gray-400' %>
     <% end %>
+    </div>
+    <div class="pr-3">
     <% if current_page?(:controller => 'categories') %>
-      <h1 class="font-extrabold scale-125 md:text-4xl md:scale-100 text-gray-700">Categories</h1>
+      <div class="text-gray-400 font-semibold border-b">Categories</div>
     <% else %>
-      <%= link_to 'Categories', categories_path %>
+      <%= link_to 'Categories', categories_path, class: 'hover:border-b hover:border-b-gray-400' %>
     <% end %>
+    </div>
   </div>
 </div>
