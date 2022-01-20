@@ -27,8 +27,8 @@
       </div>
     <% end %>
     <div class="my-5 grid p-2" data-controller="date-time" data-date-time-default-value="<%= entry&.date || '' %>">
-      <h2 class="text-gray-400 font-semibold">Date</h2>
-      <%= form.text_field :date, data:{'date-time-target':"element"}, class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
+      <h2 class="text-gray-400 font-semibold">Date and Time</h2>
+      <%= form.text_field :date, data:{'date-time-target':"element"}, required: false, class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
       <div data-date-time-target="timezone" class="text-xs text-gray-500 p-1"></div>
       <% if entry.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
