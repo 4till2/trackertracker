@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.where(user_id: current_user.id)
+    @items = Item.where(user_id: current_user.id).order("created_at DESC")
   end
 
   # GET /items/1 or /items/1.json

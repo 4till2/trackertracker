@@ -6,14 +6,21 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+  <script>
+      setTimeout("document.getElementById('notice')?.remove()", 6000)
+  </script>
 </head>
 
-<body>
-<main class="container mt-4 md:mt-8 md:w-2/3 mx-auto ">
+<body class="flex min-h-screen flex-col">
+<main class="container grow mt-4 h-full md:mt-8 md:w-2/3 mx-auto ">
   <%= yield %>
 </main>
+<% if :devise_controller? %>
+  <%= render 'layouts/footer' %>
+<% end %>
+
 </body>
+
 </html>

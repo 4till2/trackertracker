@@ -25,6 +25,6 @@
 <% end %>
 <% if action_name == "edit" %>
   <div class="w-full text-center mt-2">
-    <%= button_to 'Destroy this category', category_path(@category), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
+    <%= button_to 'Destroy this category', category_path(@category), form: { data: { turbo_confirm: 'Are you sure?' } }, method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
   </div>
 <% end %>

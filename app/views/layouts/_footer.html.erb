@@ -1,0 +1,9 @@
+<div class=" w-3/4 mx-auto flex  p-2 justify-around items-center">
+  <%= link_to 'Home', root_path, class: 'text-sm text-gray-400' %>
+  <% if user_signed_in? %>
+    <%= link_to 'Account', edit_user_registration_path, class: 'text-sm text-gray-400' %>
+    <%= button_to 'Sign Out', destroy_user_session_url, method: :delete, class: 'text-sm text-gray-400' %>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path, class: 'text-sm text-gray-400' %>
+  <% end %>
+</div>

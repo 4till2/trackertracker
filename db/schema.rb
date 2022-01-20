@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2022_01_19_181748) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -21,14 +24,14 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   end
 
   create_table "categories_items", id: false, force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.integer "item_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "item_id", null: false
     t.index ["category_id", "item_id"], name: "index_categories_items_on_category_id_and_item_id"
     t.index ["item_id", "category_id"], name: "index_categories_items_on_item_id_and_category_id"
   end
 
   create_table "dashboards", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,8 +39,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   end
 
   create_table "displays", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "dashboard_id", null: false
+    t.bigint "user_id"
+    t.bigint "dashboard_id", null: false
     t.integer "type"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -47,9 +50,9 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "item_id", null: false
-    t.datetime "date", precision: 6, default: "2022-01-19 22:48:31"
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "date", precision: 6
     t.integer "amount", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,9 +69,9 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   end
 
   create_table "sources", force: :cascade do |t|
-    t.integer "display_id", null: false
+    t.bigint "display_id", null: false
     t.string "sourceable_type", null: false
-    t.integer "sourceable_id", null: false
+    t.bigint "sourceable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["display_id"], name: "index_sources_on_display_id"

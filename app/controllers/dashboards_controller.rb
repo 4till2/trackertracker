@@ -1,6 +1,7 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_and_authorize, only: %i[ show edit update destroy ]
+  before_action -> {redirect_to :root}
 
   # GET /dashboards or /dashboards.json
   def index

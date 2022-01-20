@@ -30,21 +30,23 @@
         </div>
       </div>
       <div>
-        <div class="p-2 mx-2 border-dotted border rounded-lg  bg-gray-100/80 my-8">
-          <h3 class=" mx-auto text-center text-gray-600 font-bold">All Entries</h3>
-          <%= line_chart @category.items.map { |item|
-            { name: item.name, data: Entry.totals_by_group(item.entries, :group_by_week) }
-          }, download: true %>
-        </div>
-
-        <div class="p-2 mx-2 border-dotted border rounded-lg bg-gray-100/80 my-8">
-          <h3 class=" mx-auto text-center text-gray-600 font-bold">Entries Per Week</h3>
-          <%= column_chart Entry.totals_by_group(@category.entries, :group_by_week, range: 1.year.ago..Time.now, series: true) %>
-        </div>
 
         <div class="p-2 mx-2 border-dotted border rounded-lg bg-gray-100/80 my-8">
           <h3 class=" mx-auto text-center text-gray-600 font-bold">Total Per Item</h3>
           <%= pie_chart @category.total_per_item, donut: true %>
+        </div>
+
+
+        <div class="p-2 mx-2 border-dotted border rounded-lg bg-gray-100/80 my-8">
+          <h3 class=" mx-auto text-center text-gray-600 font-bold">Total Per Week (1 year)</h3>
+          <%= column_chart Entry.totals_by_group(@category.entries, :group_by_week, range: 1.year.ago..Time.now, series: true) %>
+        </div>
+
+        <div class="p-2 mx-2 border-dotted border rounded-lg  bg-gray-100/80 my-8">
+          <h3 class=" mx-auto text-center text-gray-600 font-bold">Item Total Per Day (1 month)</h3>
+          <%= line_chart @category.items.map { |item|
+            { name: item.name, data: Entry.totals_by_group(item.entries, :group_by_day, range: 1.month.ago..Time.now) }
+          }, download: true %>
         </div>
 
       </div>

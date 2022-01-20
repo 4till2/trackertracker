@@ -13,12 +13,11 @@
         <%= form.submit 'Save', class: "cursor-pointer rounded-lg py-2 px-3 bg-gray-700 text-gray-200 block font-medium rotate-3" %>
       </div>
     </div>
-
     <div class="my-5 grid p-2">
       <h2 class="text-gray-400 font-semibold">Item</h2>
       <select name="entry[item_id]" id="entry_item_id" placeholder="Add Item" class="block bg-gray-100 md:text-lg text-gray-700 font-bold shadow rounded-md border-none focus:ring-0 px-3 py-4 w-full">
         <% @items.map do |item| %>
-          <option value=<%= item.id %>><%= item.name %></option>
+          <option <%= item.id == entry.item_id ? 'selected' : '' %> value=<%= item.id %>><%= item.name %></option>
         <% end %>
       </select>
     </div>
@@ -27,10 +26,10 @@
         <%= entry.errors.full_messages_for(:item_id).first %>
       </div>
     <% end %>
-
-    <div class="my-5 grid p-2">
+    <div class="my-5 grid p-2" data-controller="date-time" data-date-time-default-value="<%= entry&.date || '' %>">
       <h2 class="text-gray-400 font-semibold">Date</h2>
-      <%= form.datetime_field :date, placeholder: "mm/dd/yyyy, --:-- --", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
+      <%= form.text_field :date, data:{'date-time-target':"element"}, class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
+      <div data-date-time-target="timezone" class="text-xs text-gray-500 p-1"></div>
       <% if entry.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
           <%= entry.errors.full_messages_for(:date).first %>
@@ -38,7 +37,7 @@
       <% end %>
     </div>
 
-    <div class="my-5 grid p-2">
+    <div class=" grid p-2">
       <h2 class="text-gray-400 font-semibold">Amount</h2>
       <%= form.number_field :amount, placeholder: "Add amount", class: "block bg-gray-100 text-lg text-gray-700 font-bold shadow rounded-md border border-gray-200 outline-none focus:outline-none focus:border-none focus:ring-0 px-3 py-4 w-full" %>
       <% if entry.errors.any? %>
@@ -50,7 +49,7 @@
 <% end %>
 <% if action_name == "edit" %>
   <div class="w-full text-center mt-4">
-    <%= button_to 'Destroy this entry', entry_path(@entry), method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
+    <%= button_to 'Destroy this entry', entry_path(@entry), form: { data: { turbo_confirm: 'Are you sure?' } }, method: :delete, class: "text-gray-600/50 hover:text-red-900/50 font-medium" %>
   </div>
   </div>
 <% end %>

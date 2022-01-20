@@ -27,3 +27,9 @@
     <% end %>
   <% end %>
 </div>
+<%= link_to new_entry_path(item_id: item.id) do %>
+  <div class="rounded-lg p-2 m-3 border-dashed border border-gray-300 text-gray-500 block font-large text-sm md:text-md">New <%= item.name %>
+    Entry
+  </div>
+<% end %>
+

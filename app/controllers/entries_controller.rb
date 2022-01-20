@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
 
   # GET /entries or /entries.json
   def index
-    @entries = Entry.where(user_id: current_user.id)
+    @entries = Entry.where(user_id: current_user.id).order("date DESC")
   end
 
   # GET /entries/1 or /entries/1.json
@@ -21,6 +21,7 @@ class EntriesController < ApplicationController
   # GET /entries/1/edit
   def edit
     @items = Item.where(user_id: current_user.id)
+    puts @entry.item_id
   end
 
   # POST /entries or /entries.json

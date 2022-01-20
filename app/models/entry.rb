@@ -2,9 +2,14 @@ class Entry < ApplicationRecord
   include Sourceable
   belongs_to :user
   belongs_to :item
+  validates :date, presence: true
 
 
-
+  #     group_by_day
+  #     group_by_hour_of_day
+  #     group_by_month
+  #     group_by_minute
+  #     group_by_week
   def self.totals_by_group(entries, group, range: 0, series: false)
     return unless entries.present? && group.present?
 
@@ -12,12 +17,4 @@ class Entry < ApplicationRecord
       entries.sum(&:amount)
     end
   end
-
-  GROUPINGS = %i[
-    group_by_day
-    group_by_hour_of_day
-    group_by_month
-    group_by_minute
-    group_by_week
-  ].freeze
 end

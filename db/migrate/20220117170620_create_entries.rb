@@ -3,7 +3,7 @@ class CreateEntries < ActiveRecord::Migration[7.0]
     create_table :entries do |t|
       t.references :user, null: false, foreign_key: true
       t.references :item, null: false, foreign_key: true
-      t.datetime :date, default: DateTime.now
+      t.datetime :date
       t.integer :amount, default: 0
 
       t.timestamps
