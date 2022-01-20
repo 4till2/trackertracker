@@ -30,10 +30,23 @@
         </div>
       </div>
       <div>
-<!--        Total per Item-->
-        <%= pie_chart @category.items.map{|item| [item.name, item.total]} %>
-<!--        All Items over Time-->
-        <%= line_chart @category.items.map{|item| {name: item.name, data: item.entries.map{|e| [e.created_at, e.amount]}}} %>
+        <div class="p-2 mx-2 border-dotted border rounded-lg  bg-gray-100/80 my-8">
+          <h3 class=" mx-auto text-center text-gray-600 font-bold">All Entries</h3>
+          <%= line_chart @category.items.map { |item|
+            { name: item.name, data: Entry.totals_by_group(item.entries, :group_by_week) }
+          }, download: true %>
+        </div>
+
+        <div class="p-2 mx-2 border-dotted border rounded-lg bg-gray-100/80 my-8">
+          <h3 class=" mx-auto text-center text-gray-600 font-bold">Entries Per Week</h3>
+          <%= column_chart Entry.totals_by_group(@category.entries, :group_by_week, range: 1.year.ago..Time.now, series: true) %>
+        </div>
+
+        <div class="p-2 mx-2 border-dotted border rounded-lg bg-gray-100/80 my-8">
+          <h3 class=" mx-auto text-center text-gray-600 font-bold">Total Per Item</h3>
+          <%= pie_chart @category.total_per_item, donut: true %>
+        </div>
+
       </div>
 
       <div class="p-2 mt-4 my-2">
@@ -44,6 +57,7 @@
               <%= render 'items/item_embed', item: item %>
             <% end %>
           <% end %>
+          <%= link_to 'New Item', new_item_path, class: "rounded-lg p-2 m-3 border-dashed border text-gray-400 block font-large text-xs md:text-md" %>
         </div>
       </div>
 
@@ -55,6 +69,7 @@
               <%= render 'entries/entry_embed', entry: entry %>
             <% end %>
           <% end %>
+          <%= link_to 'New Entry', new_entry_path, class: "rounded-lg p-2 m-3 border-dashed border text-gray-400 block font-large text-xs md:text-md" %>
         </div>
       </div>
 

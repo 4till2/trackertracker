@@ -20,4 +20,11 @@ class Category < ApplicationRecord
     write_attribute(:name, value.upcase)
   end
 
+  # @param group = grouping, ie. group_by_hour, group_by_week ...
+  # @param range = Date range to work with
+  # @param format = key format ie. "%b %Y", "%-l %P"
+
+  def total_per_item
+    items.map { |item| [item.name, item.total] }
+  end
 end

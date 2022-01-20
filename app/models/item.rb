@@ -8,4 +8,5 @@ class Item < ApplicationRecord
   def total
     entries.sum(:amount)
   end
+
 end

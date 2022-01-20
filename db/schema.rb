@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_191410) do
+ActiveRecord::Schema.define(version: 2022_01_19_181748) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_191410) do
   create_table "entries", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "item_id", null: false
-    t.datetime "date", precision: 6
+    t.datetime "date", precision: 6, default: "2022-01-19 22:48:31"
     t.integer "amount", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_191410) do
     t.datetime "remember_created_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "time_zone", default: "UTC"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -13,7 +13,8 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @entry = Entry.new
+    @entry = Entry.new(item_id: params[:item_id])
+    puts @entry.item_id
     @items = Item.where(user_id: current_user.id)
   end
 

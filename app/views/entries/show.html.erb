@@ -22,10 +22,10 @@
       <div class="w-full text-center grid gap-1">
         <div class="font-bold mx-auto text-xl md:text-3xl p-4 w-auto rounded-md bg-gray-500/80 text-gray-50 text-center"><%= @entry.amount %></div>
         <p class="font-bold tracking-wide font-bold text-lg md:text-3xl mt-1">
-          <%= @entry.item.name %>
+          <%= link_to @entry.item.name, item_path(@entry.item) %>
         </p>
         <div class="text-gray-600 text-sm">
-          <%= time_ago_in_words(@entry.date || @entry.created_at) %> ago
+          <%= @entry.date.to_formatted_s(:long_ordinal) %>
         </div>
         <div class="mx-auto flex flex-wrap px-4 text-center justify-center items-center gap-2">
           <% @entry.item.categories.each do |category| %>

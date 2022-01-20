@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="text-gray-600 mt-1 text-sm">
-        <%= time_ago_in_words(entry.date || entry.created_at) %> ago
+        <%= time_ago_in_words(entry.date) %> ago
       </div>
     </div>
     <div class="font-bold md:text-2xl p-3 mr-3 rounded-md bg-gray-500/80 text-gray-50 items-center"><%= entry.amount %></div>

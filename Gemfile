@@ -74,7 +74,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "chartkick"
+gem "chartkick" # Use for charts: https://chartkick.com/
 gem 'devise'
-gem "groupdate"
+gem "groupdate" # Use for grouping by date in charts: https://github.com/ankane/groupdate
 gem 'pundit'
