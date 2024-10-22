@@ -1,24 +1,43 @@
-# README
+# Track Anything Tool
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+A simple "Track Anything" tool that allows you to create and monitor various items over time.
 
-* Ruby version
+### Key Features
 
-* System dependencies
+- Create new "things to track"
+- Enter updated values with timestamps
+- Track progress over time
+- User-friendly interface
 
-* Configuration
+## How It Works
 
-* Database creation
+1. You create a new item to track
+2. Enter updated values when appropriate
+3. We store it with a timestamp
+4. Help you visualize and track progress over time
 
-* Database initialization
+## Screenshots
 
-* How to run the test suite
+![Categories](app/assets/images/categories.png)
+![Items](app/assets/images/items.png)
+![New Entry](app/assets/images/new_entry.png)
+![Entries](app/assets/images/entries.png)
+![Category Page](app/assets/images/category_page.png)
+![Item Page](app/assets/images/item_page.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Categories Overview
+2. Items List
+3. New Entry Form
+4. Entries Display
+5. Category Page
+6. Item Page
 
-* Deployment instructions
 
-* ...
+## Technologies Used
+
+- Ruby on Rails
+- HTML/ERB
+- CSS (Tailwind CSS)
+
