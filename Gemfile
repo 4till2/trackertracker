@@ -79,4 +79,7 @@ gem 'pundit'
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
-gem "kamal"
+gem "kamal", ">= 2.0.0.rc2", require: false
+
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
