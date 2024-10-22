@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_181748) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[8.0].define(version: 2022_01_19_181748) do
   create_table "categories", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
@@ -33,8 +29,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   create_table "dashboards", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_dashboards_on_user_id"
   end
 
@@ -43,8 +39,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
     t.bigint "dashboard_id", null: false
     t.integer "type"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["dashboard_id"], name: "index_displays_on_dashboard_id"
     t.index ["user_id"], name: "index_displays_on_user_id"
   end
@@ -52,10 +48,10 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   create_table "entries", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
-    t.datetime "date", precision: 6
+    t.datetime "date"
     t.integer "amount", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_entries_on_item_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
@@ -63,8 +59,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
   create_table "items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -72,8 +68,8 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
     t.bigint "display_id", null: false
     t.string "sourceable_type", null: false
     t.bigint "sourceable_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["display_id"], name: "index_sources_on_display_id"
     t.index ["sourceable_type", "sourceable_id"], name: "index_sources_on_sourceable"
   end
@@ -82,10 +78,10 @@ ActiveRecord::Schema.define(version: 2022_01_19_181748) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "time_zone", default: "UTC"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

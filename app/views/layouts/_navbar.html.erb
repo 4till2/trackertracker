@@ -3,10 +3,10 @@
     <h1 class="font-extrabold text-4xl text-gray-800 mb-1"><%= title %></h1>
     <div class="w-full flex items-end text-xs md:text-lg text-gray-600 hover:text-gray-800">
       <div class="pr-3">
-        <% if current_page?(:controller => 'entries') %>
-          <div class="text-gray-400 font-semibold border-b">Entries</div>
+        <% if current_page?(:controller => 'categories') %>
+          <div class="text-gray-400 font-semibold border-b">Categories</div>
         <% else %>
-          <%= link_to 'Entries', entries_path, class: 'hover:border-b hover:border-b-gray-400' %>
+          <%= link_to 'Categories', categories_path, class: 'hover:border-b hover:border-b-gray-400' %>
         <% end %>
       </div>
       <div class="pr-3">
@@ -17,10 +17,10 @@
         <% end %>
       </div>
       <div class="pr-3">
-        <% if current_page?(:controller => 'categories') %>
-          <div class="text-gray-400 font-semibold border-b">Categories</div>
+        <% if current_page?(:controller => 'entries') %>
+          <div class="text-gray-400 font-semibold border-b">Entries</div>
         <% else %>
-          <%= link_to 'Categories', categories_path, class: 'hover:border-b hover:border-b-gray-400' %>
+          <%= link_to 'Entries', entries_path, class: 'hover:border-b hover:border-b-gray-400' %>
         <% end %>
       </div>
     </div>

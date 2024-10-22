@@ -23,6 +23,10 @@
           <%= item.errors.full_messages_for(:name).first %>
         </div>
       <% end %>
+      <p class="text-gray-500 text-sm">
+        The name is used to identify the goal (e.g. Run 1 Mile, Eat 1000 Calories, etc.)
+      </p>
+
     </div>
 
     <label for="item[category_names]" class="sr-only">Categories</label>
@@ -60,6 +64,9 @@
 <!--          </div>-->
         </div>
       </div>
+        <p class="text-gray-500 text-sm">
+          Categories are used to group items. (e.g. Exercise, Food, etc.). Type it out and it will eithe select an existing category or create a new one.
+        </p>
 
     </div>
 <% end %>
